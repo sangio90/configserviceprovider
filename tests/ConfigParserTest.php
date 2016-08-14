@@ -3,6 +3,10 @@
 use ConfigServiceProvider\ConfigServiceProvider;
 use Pimple\Container;
 
+/**
+ * Class JsonConfigParserTest
+ * @author sangio90 <info@guidosangiovanni.com>
+ */
 class JsonConfigParserTest extends PHPUnit_Framework_TestCase
 {
     /**
