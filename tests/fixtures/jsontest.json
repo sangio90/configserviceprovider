@@ -1,0 +1,11 @@
+{
+    "property": "value",
+    "numericProperty": 1.23,
+    "booleanProperty": true,
+    "parentProperty": {
+        "childProperty": "childValue",
+        "secondChildProperty": {
+            "secondLevelChildProperty": "secondLevelChildValue"
+        }
+    }
+}
