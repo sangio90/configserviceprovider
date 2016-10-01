@@ -10,22 +10,15 @@ use Pimple\Container;
  */
 abstract class ConfigParser
 {
-    const SEPARATOR = '.';
 
     abstract public function parseConfiguration(Container $pimple, $yamlFile, $key = '');
 
-    protected function parseArrayConfiguration(Container $pimple, $configuration = [], $parentKey = '') {
+    protected function parseArrayConfiguration(Container $pimple, $configuration = []) {
         if (!is_array($configuration)) {
             throw new \Exception("Configuration must be an array");
         }
         foreach ($configuration as $subLevelKey => $value) {
-            if (!is_array($value)) {
-                $key = !empty($parentKey) ? $parentKey . static::SEPARATOR : '';
-                $pimple[$key . $subLevelKey] = $value;
-            } else {
-                $completePathKey = !empty($parentKey) ? $parentKey . static::SEPARATOR : '';
-                $pimple = $this->parseArrayConfiguration($pimple, $value, $completePathKey . $subLevelKey);
-            }
+            $pimple[$subLevelKey] = $value;
         }
         return $pimple;
     }

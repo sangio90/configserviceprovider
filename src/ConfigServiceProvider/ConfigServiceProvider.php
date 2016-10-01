@@ -11,7 +11,6 @@ use Pimple\ServiceProviderInterface;
  */
 class ConfigServiceProvider implements ServiceProviderInterface
 {
-    const SEPARATOR = '.';
 
     protected $configFilePath;
 

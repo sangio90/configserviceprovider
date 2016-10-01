@@ -11,6 +11,7 @@ class JsonConfigParserTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider provideFilePaths
+     * @param $filePath
      */
     public function testMultipleLevelsConfigurationIsParsedCorrectly($filePath)
     {
@@ -22,8 +23,10 @@ class JsonConfigParserTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($pimple['property'], 'value');
         $this->assertEquals($pimple['numericProperty'], 1.23);
         $this->assertEquals($pimple['booleanProperty'], true);
-        $this->assertEquals($pimple['parentProperty.childProperty'], 'childValue');
-        $this->assertEquals($pimple['parentProperty.secondChildProperty.secondLevelChildProperty'], 'secondLevelChildValue');
+        $this->assertEquals($pimple['parentProperty']['childProperty'], 'childValue');
+        $this->assertEquals($pimple['parentProperty']['secondChildProperty']['secondLevelChildProperty'], 'secondLevelChildValue');
+        $this->assertEquals(true, is_array($pimple['parentProperty']));
+        $this->assertEquals(true, array_key_exists('secondChildProperty', $pimple['parentProperty']));
     }
 
     public function provideFilePaths()
